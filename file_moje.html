@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> SPR</title>
+</head>
+
+<body>
+
+  <script>
+    //=============================================================================================================================
+    function addField() {
+      var e = document.getElementById("ddlViewBy");
+      var value = e.value;
+      var text = e.options[e.selectedIndex].text;
+
+      formFields.innerHTML = formFields.innerHTML + '<input type="' + value + '" name="pole[]"><br />';
+    }
+  </script>
+
+  <form>
+    <select id="ddlViewBy">
+      <option value="number">number</option>
+      <option value="text" selected="selected">text</option>
+      <option value="color">color</option>
+      <option value="password">password</option>
+    </select>
+
+    <input type="button" name="button" value="Dodaj" onclick="addField(this.form)">
+  </form>
+  <label id="wynik"></label>
+  <div id="formFields">
+    <input type="text" name="pole[]"><br />
+  </div>
+
+  <script>
+    //=============================================================================================================================
+    function wyswietlanie() {
+      var fileInput = document.getElementById('myfile');
+      var wyswietlenie = document.getElementById('wyswietlenie');
+      var url = URL.createObjectURL(fileInput.files[0]);
+      wyswietlenie.innerHTML = '<img src="' + url + '">';
+    }
+
+  </script>
+  <form>
+    <input type="file" id="myfile" name="myfile"><br><br>
+    <input type="button" id="fileButton" value="Wyświetl" onclick="wyswietlanie(this)">
+  </form>
+
+  <label id="wyswietlenie"></label>
+
+  </div>
+  <script>
+    //=============================================================================================================================
+    function wyniki(form) {
+      let piwo = form.piwo.value;
+      let plec = form.plec.value;
+    
+      if (plec === "woman") {
+        promile = piwo/2;
+          document.getElementById("wynik2").innerHTML = promile.toFixed(2) + " promila!";
+      } else{
+      promile = piwo*2;
+        document.getElementById("wynik2").innerHTML = promile.toFixed(2) + " promila!";
+      }
+    }
+  </script>
+
+
+  <div style="padding: 30px;background-color:greenyellow;width:450px;height:130px;text-align: center;">
+    <form>
+      <label>Spożyłem </label> <input type="number" class="dane" id="piwo"> ml piwa (1 kufel = 500ml)
+      <br>
+      <label>Określ swoją płeć</label><input type="radio" id="plec" name="plec" value="man">mężczyzna<input type="radio" id="plec" value="woman" name="plec">kobieta
+      <br>
+      <input type="button" name="button" value="oblicz" onClick="wyniki(this.form)">
+    </form>
+    <div id="wynik2"
+      style="margin-top:20px;background-color:green;width:200px;height:30px;text-align: center;display: block; margin-left: auto; margin-right: auto;">
+    </div>
+
+  </div>
+  <script>
+    //=============================================================================================================================
+
+function peselito(form) {
+
+if (form.pesel1.value.length == 11) {
+    var l1 = parseInt(form.pesel1.value.substring(0, 1));
+    var l2 = parseInt(form.pesel1.value.substring(1, 2));
+    var l3 = parseInt(form.pesel1.value.substring(2, 3));
+    var l4 = parseInt(form.pesel1.value.substring(3, 4));
+    var l5 = parseInt(form.pesel1.value.substring(4, 5));
+    var l6 = parseInt(form.pesel1.value.substring(5, 6));
+    var l7 = parseInt(form.pesel1.value.substring(6, 7));
+    var l8 = parseInt(form.pesel1.value.substring(7, 8));
+    var l9 = parseInt(form.pesel1.value.substring(8, 9));
+    var l10 = parseInt(form.pesel1.value.substring(9, 10));
+    var l11 = parseInt(form.pesel1.value.substring(10, 11));
+
+    var lk = (1*l1 + 3*l2 + 7*l3 + 9*l4 + 1*l5 + 3*l6 + 7*l7 + 9*l8 + 1*l9 + 3*l10);
+    var ck = lk % 10;
+    var ckk = 10 - ck;
+    if (ckk == l11) {
+        alert("PESEL prawidłowy!");
+    }
+    else {
+        alert("PESEL nieprawidłowy!");
+    }
+}
+else {
+    alert("PESEL nieprawidłowy!");
+}
+}
+  </script>
+  <form name="pesel">
+    Wpisz numer PESEL:<br>
+    <input type="text" name="pesel1">
+    <input type="button" name="button3" value="Test" onClick="peselito(this.form)">
+    </form>
+  <script>
+    //=============================================================================================================================
+function emailito(form)
+{
+  let em=form.email.value;
+  
+  if(em.match(/@/))
+  {
+  document.getElementById("email_wyswietl").innerHTML = em;
+  email_wyswietl.style.backgroundColor = 'lime';
+}else
+{
+document.getElementById("email_wyswietl").innerHTML = "";
+email_wyswietl.style.backgroundColor = 'white';
+}
+}
+///^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  </script>
+<form name="emai">
+  Wpisz email<br>
+  <input type="text" name="email">
+  <input type="button" name="button4" value="Test" onClick="emailito(this.form)">
+  </form>
+  <div id="email_wyswietl" style="width:300px;height:30px;">
+
+  </div>
+</body>
+
+</html>
